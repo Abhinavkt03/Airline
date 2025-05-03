@@ -3,8 +3,12 @@ const { ServerConfig, Logger } = require("./config");
 const apiRoutes = require("./routes");
 
 const app = express();
-const port = ServerConfig.PORT;
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
+
 app.use("/api", apiRoutes);
+const port = ServerConfig.PORT;
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
